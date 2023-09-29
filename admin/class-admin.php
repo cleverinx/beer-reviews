@@ -33,16 +33,20 @@ class Admin
         $output = '';
 
         foreach ($field_args as $field) {
+
             $slug = $field['slug'];
+	        $value = $settings[ $slug ] ?? '';
             $setting = $this->option_name.'['.$slug.']';
             $label = esc_attr__($field['label'], $this->plugin_slug);
             $output .= '<h3><label for="'.$setting.'">'.$label.'</label></h3>';
 
             if ($field['type'] === 'text') {
-                $output .= '<p><input type="text" id="'.$setting.'" name="'.$setting.'" value="'.$settings[$slug].'"></p>';
-            } elseif ($field['type'] === 'textarea') {
-                $output .= '<p><textarea id="'.$setting.'" name="'.$setting.'" rows="10">'.$settings[$slug].'</textarea></p>';
+                $output .= '<p><input type="text" id="'.$setting.'" name="'.$setting.'" value="'.$value.'"></p>';
             }
+			elseif ($field['type'] === 'password') {
+				$output .= '<p><input type="password" id="'.$setting.'" name="'.$setting.'" value="'.$value.'"></p>';
+			}
+
         }
 
         return $output;
@@ -59,14 +63,23 @@ class Admin
 
     public function add_menus() {
         $plugin_name = Info::get_plugin_title();
+add_menu_page(
+	$plugin_name,
+	'Beer Reviews',
+	'manage_options',
+	$this->plugin_slug,
+	[$this, 'render_dashboard']
+);
+
         add_submenu_page(
-            'options-general.php',
-            $plugin_name,
-            $plugin_name,
-            'manage_options',
             $this->plugin_slug,
-            [$this, 'render']
+			'Beer Reviews Settings',
+			'Settings',
+            'manage_options',
+            $this->plugin_slug.'-settings',
+			[$this, 'render']
         );
+
     }
 
     /**
@@ -74,20 +87,31 @@ class Admin
      */
 
 
+	public function render_dashboard() {
+		//generate the dashboard
+		 $settings = $this->settings; //NOSONAR
 
+		$heading = Info::get_plugin_title();  //NOSONAR
+		require_once plugin_dir_path(dirname(__FILE__)).'admin/partials/dashboard.php';
+	}
     public function render() {
 
         // Generate the settings fields
         $field_args = [
 					[
-				'slug' => 'slug',
-				'label' => 'Slug',
+				'slug' => 'client_id',
+				'label' => 'Untappd Client ID',
 				'type' => 'text',
+			],
+	        		[
+				'slug' => 'client_secret',
+				'label' => 'Untappd Client ID',
+				'type' => 'password',
 			],
 			[
 				'slug' => 'text',
-				'label' => 'Text',
-				'type' => 'textarea',
+				'label' => 'Beer ID',
+				'type' => 'text',
 			],
         ];
 
@@ -98,8 +122,9 @@ class Admin
 
         $fields = $this->custom_settings_fields($field_args, $settings);  //NOSONAR
         $settings_group = $this->settings_group;  //NOSONAR
-        $heading = Info::get_plugin_title();  //NOSONAR
+        $heading = Info::get_plugin_title() . ' Settings';  //NOSONAR
         $submit_text = esc_attr__('Submit', $this->plugin_slug);  //NOSONAR
+	    $page_slug = $this->plugin_slug . '-settings';  //NOSONAR
 
 
 
