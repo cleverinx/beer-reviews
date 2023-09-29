@@ -2,6 +2,8 @@
 
 namespace Beer_Reviews;
 
+use BeerReviewsUtility;
+
 /**
  * The code used on the frontend.
  */
@@ -23,6 +25,30 @@ class Frontend
         wp_enqueue_style($this->plugin_slug, plugin_dir_url(__FILE__) . 'css/beer-reviews-frontend.css', [], $this->version);
         wp_enqueue_script($this->plugin_slug, plugin_dir_url(__FILE__) . 'js/beer-reviews-frontend.js', ['jquery'], $this->version, true);
     }
+
+	  public function register_shortcodes()
+    {
+
+        add_shortcode("beer-reviews", array( $this,"beer_reviews_handler"));
+    } // register_shortcodes()
+
+	 public function beer_reviews_handler($atts)
+	{
+		$atts = shortcode_atts(array(
+			'id' => '1',
+		), $atts, 'beer-reviews');
+		$id = $atts['id']; //NOSONAR
+
+		$data = BeerReviewsUtility::fetch_beer_reviews_data($this->settings); //NOSONAR
+
+		ob_start();
+		include_once plugin_dir_path(dirname(__FILE__)).'frontend/partials/view.php';
+		return ob_get_clean();
+
+
+
+	} // beer_reviews_handler()
+
 
     /**
      * Render the view using MVC pattern.

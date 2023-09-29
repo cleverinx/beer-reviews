@@ -26,6 +26,8 @@ class Plugin
         require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-loader.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-admin.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'frontend/class-frontend.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'frontend/partials/untappd-data.php';
+
         $this->loader = new Loader();
     }
 
@@ -39,7 +41,7 @@ class Plugin
     private function define_frontend_hooks() {
         $plugin_frontend = new Frontend($this->plugin_slug, $this->version, $this->option_name);
         $this->loader->add_action('wp_enqueue_scripts', $plugin_frontend, 'assets');
-        $this->loader->add_action('wp_footer', $plugin_frontend, 'render');
+		$this->loader->add_action('init', $plugin_frontend, 'register_shortcodes');
     }
 
     public function run() {
