@@ -1,0 +1,134 @@
+@import 'src/_Color.sass';
+
+.beer-reviews {
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .tooltip {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .tooltip-text {
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    z-index: 1;
+    width: 200px;
+    padding: 5px;
+    visibility: hidden;
+    background-color: #333;
+    border-radius: 4px;
+    opacity: 0;
+    color: #fff;
+    text-align: center;
+    transform: translateX(-50%);
+    transition: opacity 0.2s, visibility 0.2s;
+
+    &.active {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  .star-rating {
+    display: inline-block;
+
+    .lucide-star,
+    .lucide-star-half {
+      color: gold;
+    }
+
+    .lucide-star.empty {
+      opacity: 0.6;
+      color: #bbb;
+
+    }
+
+    .half-star {
+      position: relative;
+      display: inline-block;
+
+      .lucide-star.empty {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+    }
+  }
+
+
+  .beer-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .subheading {
+      margin-bottom: 0;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+    }
+
+    .beer-label {
+      width: 25%;
+      max-width: 100px;
+      min-width: 100px;
+    }
+
+    .beer-info-content {
+      align-self: center;
+      width: 75%;
+      min-width: 75%;
+    }
+  }
+
+  .card {
+    border: 1px solid $color-secondary;
+    border-radius: 25px;
+  }
+
+  .padding-1-5 {
+    padding: 1.5rem;
+  }
+
+  .padding-1 {
+    padding: 1rem;
+  }
+
+  h1 {
+    &.display-sm {
+      font-size: 2.5rem;
+    }
+  }
+
+  h3 {
+    &.display-sm {
+      font-size: 1.3rem;
+    }
+  }
+
+  .margin-0 {
+    margin: 0 !important;
+  }
+
+}
+
+
+@media (min-width: 40.0rem) {
+
+
+}
+
+/* Larger than tablet screen */
+@media (min-width: 80.0rem) {
+
+}
+
+/* Larger than desktop screen */
+@media (min-width: 120.0rem) {
+
+}

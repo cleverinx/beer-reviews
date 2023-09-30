@@ -141,7 +141,7 @@
 .beer-reviews .container {
   margin: 0 auto;
   max-width: 112rem;
-  padding: 0 2rem;
+  padding: 0 1rem;
   position: relative;
   width: 100%;
 }
@@ -182,83 +182,6 @@
   max-width: 100%;
   width: 100%;
 }
-.beer-reviews .row .column.column-offset-10 {
-  margin-left: 10%;
-}
-.beer-reviews .row .column.column-offset-20 {
-  margin-left: 20%;
-}
-.beer-reviews .row .column.column-offset-25 {
-  margin-left: 25%;
-}
-.beer-reviews .row .column.column-offset-33, .beer-reviews .row .column.column-offset-34 {
-  margin-left: 33.3333%;
-}
-.beer-reviews .row .column.column-offset-40 {
-  margin-left: 40%;
-}
-.beer-reviews .row .column.column-offset-50 {
-  margin-left: 50%;
-}
-.beer-reviews .row .column.column-offset-60 {
-  margin-left: 60%;
-}
-.beer-reviews .row .column.column-offset-66, .beer-reviews .row .column.column-offset-67 {
-  margin-left: 66.6666%;
-}
-.beer-reviews .row .column.column-offset-75 {
-  margin-left: 75%;
-}
-.beer-reviews .row .column.column-offset-80 {
-  margin-left: 80%;
-}
-.beer-reviews .row .column.column-offset-90 {
-  margin-left: 90%;
-}
-.beer-reviews .row .column.column-10 {
-  flex: 0 0 10%;
-  max-width: 10%;
-}
-.beer-reviews .row .column.column-20 {
-  flex: 0 0 20%;
-  max-width: 20%;
-}
-.beer-reviews .row .column.column-25 {
-  flex: 0 0 25%;
-  max-width: 25%;
-}
-.beer-reviews .row .column.column-33, .beer-reviews .row .column.column-34 {
-  flex: 0 0 33.3333%;
-  max-width: 33.3333%;
-}
-.beer-reviews .row .column.column-40 {
-  flex: 0 0 40%;
-  max-width: 40%;
-}
-.beer-reviews .row .column.column-50 {
-  flex: 0 0 50%;
-  max-width: 50%;
-}
-.beer-reviews .row .column.column-60 {
-  flex: 0 0 60%;
-  max-width: 60%;
-}
-.beer-reviews .row .column.column-66, .beer-reviews .row .column.column-67 {
-  flex: 0 0 66.6666%;
-  max-width: 66.6666%;
-}
-.beer-reviews .row .column.column-75 {
-  flex: 0 0 75%;
-  max-width: 75%;
-}
-.beer-reviews .row .column.column-80 {
-  flex: 0 0 80%;
-  max-width: 80%;
-}
-.beer-reviews .row .column.column-90 {
-  flex: 0 0 90%;
-  max-width: 90%;
-}
 .beer-reviews .row .column .column-top {
   align-self: flex-start;
 }
@@ -271,8 +194,7 @@
 @media (min-width: 40rem) {
   .beer-reviews .row {
     flex-direction: row;
-    margin-left: -1rem;
-    width: calc(100% + 2rem);
+    width: 100%;
   }
   .beer-reviews .row .column {
     margin-bottom: inherit;
@@ -349,7 +271,6 @@
 .beer-reviews h5,
 .beer-reviews h6 {
   font-weight: 300;
-  letter-spacing: -0.1rem;
   margin-bottom: 2rem;
   margin-top: 0;
 }
@@ -397,3 +318,94 @@
 .beer-reviews .float-right {
   float: right;
 }
+.beer-reviews * {
+  box-sizing: border-box;
+}
+.beer-reviews .tooltip {
+  position: relative;
+  cursor: pointer;
+}
+.beer-reviews .tooltip-text {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  z-index: 1;
+  width: 200px;
+  padding: 5px;
+  visibility: hidden;
+  background-color: #333;
+  border-radius: 4px;
+  opacity: 0;
+  color: #fff;
+  text-align: center;
+  transform: translateX(-50%);
+  transition: opacity 0.2s, visibility 0.2s;
+}
+.beer-reviews .tooltip-text.active {
+  visibility: visible;
+  opacity: 1;
+}
+.beer-reviews .star-rating {
+  display: inline-block;
+}
+.beer-reviews .star-rating .lucide-star,
+.beer-reviews .star-rating .lucide-star-half {
+  color: gold;
+}
+.beer-reviews .star-rating .lucide-star.empty {
+  opacity: 0.6;
+  color: #bbb;
+}
+.beer-reviews .star-rating .half-star {
+  position: relative;
+  display: inline-block;
+}
+.beer-reviews .star-rating .half-star .lucide-star.empty {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.beer-reviews .beer-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.beer-reviews .beer-info .subheading {
+  margin-bottom: 0;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+}
+.beer-reviews .beer-info .beer-label {
+  width: 25%;
+  max-width: 100px;
+  min-width: 100px;
+}
+.beer-reviews .beer-info .beer-info-content {
+  align-self: center;
+  width: 75%;
+  min-width: 75%;
+}
+.beer-reviews .card {
+  border: 1px solid #606c76;
+  border-radius: 25px;
+}
+.beer-reviews .padding-1-5 {
+  padding: 1.5rem;
+}
+.beer-reviews .padding-1 {
+  padding: 1rem;
+}
+.beer-reviews h1.display-sm {
+  font-size: 2.5rem;
+}
+.beer-reviews h3.display-sm {
+  font-size: 1.3rem;
+}
+.beer-reviews .margin-0 {
+  margin: 0 !important;
+}
+
+/* Larger than tablet screen */
+/* Larger than desktop screen */
