@@ -39,15 +39,16 @@ class Admin {
 			$label   = esc_attr__( $field['label'], $this->plugin_slug );
 			$output  .= '<h3><label for="' . $setting . '">' . $label . '</label></h3>';
 
-			$input_common = '<p><input type="%s" id="%s" name="%s" value="%s"></p>';
 
-			if ( $field['type'] === 'text' ) {
-				$output .= sprintf( $input_common, 'text', $setting, $setting, $value );
-			} elseif ( $field['type'] === 'password' ) {
-				$output .= sprintf( $input_common, 'password', $setting, $setting, $value );
+			$input_common = '<p><input type="%s" id="%s" name="%s" value="%s"%s></p>';
+
+			if ( $field['type'] === 'text' || $field['type'] === 'password' ) {
+				$output .= sprintf( $input_common, $field['type'], $setting, $setting, $value, '' );
 			} elseif ( $field['type'] === 'checkbox' ) {
-				$output .= sprintf( $input_common, 'checkbox', $setting, $setting, '1 ' . checked( 1, $value, false ) );
+				$checked = $value ? ' checked' : ''; // Add 'checked' attribute conditionally
+				$output  .= sprintf( $input_common, 'checkbox', $setting, $setting, '1', $checked );
 			}
+
 
 		}
 
@@ -118,12 +119,13 @@ class Admin {
 			],
 			[
 				'slug'  => 'show_avatar',
-				'label' => 'Show Avatar',
+				'label' => 'Show Avatars',
 				'type'  => 'checkbox',
+
 			],
 			[
 				'slug'  => 'show_review',
-				'label' => 'Show Review',
+				'label' => 'Show Reviews',
 				'type'  => 'checkbox',
 			],
 		];

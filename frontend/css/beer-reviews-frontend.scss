@@ -1,18 +1,24 @@
 @import 'src/_Color.sass';
 
+
+//define colors
+$orange: #f44e27;
+$black: #191919;
+
 .beer-reviews {
 
   * {
     box-sizing: border-box;
   }
 
-  .mx-auto {
-    margin: 0 auto !important;
-  }
 
   .tooltip {
-    cursor: pointer;
+    cursor: default;
     position: relative;
+  }
+
+  .container {
+    max-width: 800px;
   }
 
   .tooltip-text {
@@ -33,18 +39,25 @@
     width: 150px;
     z-index: 1;
 
+
     &.active {
-      opacity: 1;
+      opacity: 0.9;
       visibility: visible;
     }
   }
 
+  .subheading-sm {
+    font-size: 0.95rem;
+    font-weight: 300;
+    margin-bottom: 0;
+  }
 
   .review {
+    border-top: 1px solid #eaeaea;
+
     .review-meta {
       align-items: center;
       display: flex;
-      //justify-content: space-between;
       flex-wrap: wrap;
 
     }
@@ -82,25 +95,22 @@
 
 
     align-items: center;
+    color: $orange;
     display: flex;
 
     .num-rating {
-      background: #333;
-      border-radius: 4px;
-      color: #fff;
-      font-size: 0.75rem;
-      line-height: 0.8rem;
+      font-size: 0.9rem;
       margin-left: 5px;
-      padding: 3px 5px;
     }
   }
 
   .star-rating {
-    display: inline-block;
+    align-items: center;
+    display: flex;
 
-    .lucide-star,
-    .lucide-star-half {
-      color: #222;
+
+    .lucide {
+      color: $orange;
     }
 
     .lucide-star.empty {
@@ -110,7 +120,7 @@
     }
 
     .half-star {
-      display: inline-block;
+      display: flex;
       position: relative;
 
       .lucide-star.empty {
@@ -124,40 +134,53 @@
 
   .beer-specs {
 
-    border-top: 1px solid #eaeaea;
-    margin-top: 20px;
-
-
-    .beer-spec {
-      font-size: 19px;
-      font-weight: 400;
-      margin-bottom: 10px;
+    .column.stat{
+      padding:0.5rem;
     }
 
-    .beer-spec > p {
-      color: #999;
-      font-size: 0.8rem;
-      text-transform: uppercase;
+    .beer-spec {
+      background: #f0f0f0ba;
+      border-radius: 5px;
+      color: #646464;
+      font-size: 0.9rem;
+padding:1rem 0.5rem;
+
+      font-weight: 400;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .stat-icon {
+      color: $orange;
+      display: block;
+      margin: 0 auto 5px;
+      min-height: 1.2rem;
+      min-width: 1.2rem;
+    }
+
+
+    .beer-spec > .subheading {
+      line-height: 1.1rem;
 
     }
 
   }
 
   .beer-info {
+
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
+  padding: 0.5rem 1rem 0.5rem;
     &:first-child {
       border-bottom: 1px solid #eaeaea;
-      margin-bottom: 15px;
     }
 
-    .subheading {
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      margin-bottom: 0;
-      text-transform: uppercase;
+
+    .star-rating .lucide {
+      max-height: 1.3em;
+      max-width: 1.4em;
     }
 
     .beer-label {
@@ -178,10 +201,32 @@
   }
 
   .card {
-    border: 1px solid #eaeaea;
-    border-radius: 25px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     margin-bottom: 1rem;
     overflow: hidden;
+  }
+
+  .lucide {
+    max-height: 1.1em;
+    max-width: 1.1em;
+  }
+
+  h1 {
+    color: $black;
+
+    &.display-sm {
+      font-size: 2.5rem;
+      font-weight: 800;
+    }
+  }
+
+
+  h3 {
+    &.display-sm {
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
   }
 
   .py-1 {
@@ -196,27 +241,26 @@
     padding: 1rem !important;
   }
 
+  .mx-auto {
+    margin: 0 auto !important;
+  }
 
-  .padding-05 {
+  .mr-05 {
+    margin-right: 0.5rem !important;
+  }
+
+
+  .p-05 {
     padding: 0.5rem;
   }
 
-  h1 {
-    &.display-sm {
-      font-size: 2.5rem;
-      font-weight: 800;
-    }
-  }
-
-  h3 {
-    &.display-sm {
-      font-size: 1.1rem;
-      font-weight: 400;
-    }
-  }
 
   .m-0 {
     margin: 0 !important;
+  }
+
+  .mt-1 {
+    margin-top: 1rem;
   }
 
   .mb-1 {
@@ -227,20 +271,29 @@
     padding-bottom: 0 !important;
   }
 
+  .flex {
+    display: flex;
+  }
+
+  @media (max-width: 40.0rem) {
+    .beer-info {
+      flex-wrap: wrap;
+    }
+
+
+    .beer-info .beer-label {
+      margin: 0 auto;
+    }
+    .beer-info .beer-info-content {
+      text-align: center;
+      width: 100%;
+    }
+    .beer-info .rating-wrap {
+      justify-content: center;
+
+    }
+
+  }
+
 }
 
-
-@media (min-width: 40.0rem) {
-
-
-}
-
-/* Larger than tablet screen */
-@media (min-width: 80.0rem) {
-
-}
-
-/* Larger than desktop screen */
-@media (min-width: 120.0rem) {
-
-}
