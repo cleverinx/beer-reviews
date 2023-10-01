@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:       Untappd Beer Reviews
- * Plugin URI:        http://example.com/plugin-name-uri/
+ * Plugin URI:        https://tbkcreative.com
  * Description:       Show beer information & latest beer reviews from untapped API
  * Version:           1.0
  * Author:            Dave Randhawa
- * Author URI:        http://example.com/
+ * Author URI:        http://tbkcreative.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       beer-reviews

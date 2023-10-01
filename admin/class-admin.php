@@ -109,7 +109,7 @@ class Admin {
 			],
 			[
 				'slug'  => 'client_secret',
-				'label' => 'Untappd Client ID',
+				'label' => 'Untappd Client Secret',
 				'type'  => 'password',
 			],
 			[
