@@ -29,7 +29,7 @@
         <p>In the settings, you can also choose whether to display user avatars and user reviews with the beer
             information.</p>
 
-        <p>Displaying Different Beer Reviews:</p>
+        <h3>Displaying Different Beer Reviews:</h3>
         <p>If you want to display different beer reviews on different areas of your site, you can use the id attribute
             with the <code>[beer-reviews]</code> shortcode.</p>
         <p>For example: <code>[beer-reviews id='29957']</code>. Replace '29957' with the beer ID of the specific beer
@@ -40,7 +40,11 @@
             URL is https://untappd.com/b/garrison-brewing-company-irish-red-ale/29957, the beer ID is '29957'.</p>
 
         <h3>Support:</h3>
-        <p>If you encounter any issues or have questions about using this plugin, feel free to reach out to us for
+
+        //create mail link to email  sdrandhawa@protonmail.com with subject "Beer Reviews Plugin Support"
+
+
+        <p>If you encounter any issues or have questions about using this plugin, feel free to <a href="mailto:sdrandhawa@protonmail.com?subject=Beer Reviews Plugin Support">reach out</a> to us for
             support.</p>
     </div>
 </div>

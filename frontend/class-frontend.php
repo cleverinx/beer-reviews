@@ -23,9 +23,9 @@ class Frontend {
 
 	public function assets() {
 		wp_enqueue_style( $this->plugin_slug, plugin_dir_url( __FILE__ ) . 'css/beer-reviews-frontend.css', [], $this->version );
-
+wp_enqueue_script( 'lucide-icons', 'https://unpkg.com/lucide@latest', [], $this->version, true );
 		wp_enqueue_script( $this->plugin_slug, plugin_dir_url( __FILE__ ) . 'js/beer-reviews-frontend.js', [ 'jquery' ], $this->version, true );
-		wp_enqueue_script( 'lucide-icons', 'https://unpkg.com/lucide@latest', [], $this->version, true );
+
 
 
 	}
@@ -73,7 +73,7 @@ class Frontend {
 		}
 
 
-		$show_reviews = $this->settings['show_reviews'] ?? ''; //NOSONAR
+		$show_reviews = $this->settings['show_review'] ?? ''; //NOSONAR
 		$show_avatar  = $this->settings['show_avatar'] ?? ''; //NOSONAR
 
 		$data = BeerReviewsUtility::fetch_beer_reviews_data( $this->settings ); //NOSONAR
