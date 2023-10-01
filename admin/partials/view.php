@@ -1,14 +1,15 @@
-<div class="wrap">
-    <h1><?php echo $heading ?></h1>
-    <div id="poststuff">
+<div class="wrap beer-reviews-admin">
+    <div id="poststuff" class="container">
+		<?php $heading = $heading ?? 'Untappd Beer Reviews Settings'; ?>
+        <h1><?php echo $heading ?></h1>
         <div id="post-body" class="metabox-holder columns-2">
             <div id="post-body-content">
                 <form action="options.php" method="post">
-                    <?php settings_fields($settings_group); ?>
-                    <?php do_settings_sections($page_slug); ?>
-                    <?php echo $fields ?>
+					<?php settings_fields( $settings_group ); ?>
+					<?php do_settings_sections( $page_slug ); ?>
+					<?php echo $fields ?>
                     <div class="submit-wrap">
-                        <?php submit_button($submit_text); ?>
+						<?php submit_button( $submit_text ); ?>
                         <div class="spinner"></div>
                     </div>
                 </form>

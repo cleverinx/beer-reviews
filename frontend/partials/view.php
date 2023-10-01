@@ -3,8 +3,14 @@
 
 use Beer_Reviews\Frontend;
 
-if ( ! empty( $data ) ) {
+
+if ( ! empty( $data ) && $data['meta']['code'] == 200 ) {
+
 	$beer = $data['response']['beer'];
+
+
+$show_avatar = !empty($show_avatar) ? 1 : 0;
+$show_reviews = !empty($show_reviews) ? 1 : 0;
 
 	?>
 
@@ -14,13 +20,13 @@ if ( ! empty( $data ) ) {
 
 
             <div class="card">
-                <div class="row padding-1-5 beer-info">
+                <div class="row px-1 beer-info ">
 
-                    <div class="beer-label">
+                    <div class="beer-label beer-label__sm">
 						<?php
 						if ( ! empty( $beer['brewery']['brewery_label'] ) ) {
 							?>
-                            <div class="logo-wrap">
+                            <div class="logo-wrap logo-wrap__sm mx-auto">
                                 <img class="beer-label__beer"
                                      src="<?php echo $beer['brewery']['brewery_label'] ?>" alt="Beer Label">
                             </div>
@@ -28,45 +34,50 @@ if ( ! empty( $data ) ) {
                     </div>
 
                     <div class="beer-info-content">
-
-                        <p class="subheading">Brewery</p>
-                        <h3 class="display-sm margin-0"><?php echo $beer['brewery']['brewery_name']; ?></h3>
+                        <h3 class="display-sm m-0"><?php echo $beer['brewery']['brewery_name']; ?></h3>
 
                     </div>
                 </div>
 
-                <div class="row padding-1-5  beer-info">
+                <div class="row px-1  beer-info">
                     <div class="beer-label">
 
 						<?php
 						if ( ! empty( $beer['brewery']['brewery_label'] ) ) {
 							?>
-                            <div class="logo-wrap">
+                            <div class="logo-wrap mx-auto">
                                 <img class="beer-label__beer"
                                      src="<?php echo $beer['beer_label']; ?>" alt="Beer Label">
                             </div>
 						<?php } ?>
                     </div>
                     <div class="beer-info-content">
-                        <p class="subheading">Beer</p>
-
-                        <h1 class="display-sm margin-0"><?php echo $beer['beer_name']; ?></h1>
+                        <h1 class="display-sm m-0"><?php echo $beer['beer_name']; ?></h1>
                     </div>
 
                 </div>
 
 
-            <div class="row">
-<div class="column">
-                <div><p class="tooltip subheading margin-0">Beer Style</p><?php echo $beer['beer_style']; ?></div>
-    <div><p class="tooltip subheading margin-0" ><span class="tooltip-text">Alcohol Amount</span>ABV</p> <?php echo $beer['beer_abv']; ?> </div>
-    </div>
-                <div class="column">
-                <div><p class="tooltip subheading margin-0" ><span class="tooltip-text">Bitterness</span>IBU</p> <?php echo $beer['beer_ibu']; ?></div>
-                <div><p class="tooltip subheading margin-0" >Average Rating</p> <?php echo Frontend::generate_star_rating($beer['rating_score']); ?><span><?php echo round($beer['rating_score'], 2); ?>/5</span></div>
-                </div></div>
+                <div class="row beer-specs p-1 pb-0">
+                    <div class="column">
+                        <div class="beer-spec mb-1"><p class="tooltip subheading m-0">Beer
+                                Style</p><?php echo $beer['beer_style']; ?>
+                        </div>
+                        <div class="beer-spec mb-1"><p class="tooltip subheading m-0"><span class="tooltip-text">Alcohol By Volume</span>ABV
+                            </p> <?php echo $beer['beer_abv']; ?>%
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="beer-spec mb-1"><p class="tooltip subheading m-0"><span class="tooltip-text">Bitterness</span>IBU
+                            </p> <?php echo $beer['beer_ibu']; ?></div>
+                        <div class="beer-spec mb-1"><p class="tooltip subheading m-0">Average Rating</p>
+                            <div class="rating-wrap"> <?php echo Frontend::generate_star_rating( $beer['rating_score'] ); ?>
+                                <span class="num-rating"><?php echo round( $beer['rating_score'], 2 ); ?>/5</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-</div>
+
 
 			<?php
 
@@ -86,17 +97,38 @@ if ( ! empty( $data ) ) {
 				}
 			}
 			?>
-            <h3>Reviews:</h3>
+            <h3 class="display-sm">Latest Reviews</h3>
             <div class="reviews-wrap">
 				<?php
 				foreach ( $latest_reviews as $review ): ?>
-                    <div class="review card padding-1">
-                        <div><?php echo Frontend::generate_star_rating($review['rating_score']); ?><span><?php echo round($review['rating_score'], 2); ?>/5</span></div>
-                        <p class="margin-0">
-                            <strong><?php echo $review['user']['first_name'] . ' ' . $review['user']['last_name']; ?></strong>
-                        <span class="date">
-            <?php echo date( 'F j, Y, g:i a', strtotime( $review['created_at'] ) ); ?> </span>
-                        </p>
+                    <div class="review card p-1">
+                        <div class="rating-wrap"><?php echo Frontend::generate_star_rating( $review['rating_score'] ); ?>
+                            <span class="num-rating"><?php echo round( $review['rating_score'], 2 ); ?>/5</span></div>
+                        <div class="m-0 review-meta">
+                            <div class="user-info">
+                                <?php if ( $show_avatar == 1 ): ?>
+                                <div class="user-avatar">
+                                    <img src="<?php echo $review['user']['user_avatar']; ?>" alt="User Avatar">
+                                </div>
+                    <?php endif; ?>
+                                <div class="user-meta">
+                                    <p class="m-0"><?php echo $review['user']['first_name'] . ' ' . $review['user']['last_name']; ?></p>
+                                    <p class="date m-0">
+										<?php echo date( 'F j, Y, g:i a', strtotime( $review['created_at'] ) ); ?> </p>
+                                </div>
+                            </div>
+
+
+							<?php
+
+							if ( $show_reviews == 1 ): ?>
+                                <div class="user-comment">
+                                    <p class="comment m-0">
+										<?php echo $review['checkin_comment']; ?>
+                                    </p>
+                                </div>
+							<?php endif; ?>
+                        </div>
 
                     </div>
 				<?php
@@ -104,9 +136,9 @@ if ( ! empty( $data ) ) {
 				?>
             </div>
         </div>
-
+    </div>
 
 	<?php
 } else {
-	echo '<div class="beer-reviews">No data found.</div>';
+	echo '<div class="beer-reviews">No beer data found. Please check your API keys.</div>';
 }

@@ -6,30 +6,92 @@
     box-sizing: border-box;
   }
 
+  .mx-auto {
+    margin: 0 auto !important;
+  }
+
   .tooltip {
-    position: relative;
     cursor: pointer;
+    position: relative;
   }
 
   .tooltip-text {
-    position: absolute;
-    bottom: 125%;
-    left: 50%;
-    z-index: 1;
-    width: 200px;
-    padding: 5px;
-    visibility: hidden;
     background-color: #333;
     border-radius: 4px;
-    opacity: 0;
+    bottom: 100%;
     color: #fff;
+    font-size: 0.8rem;
+    left: 50%;
+    opacity: 0;
+    padding: 5px;
+    position: absolute;
     text-align: center;
+    text-transform: capitalize;
     transform: translateX(-50%);
     transition: opacity 0.2s, visibility 0.2s;
+    visibility: hidden;
+    width: 150px;
+    z-index: 1;
 
     &.active {
-      visibility: visible;
       opacity: 1;
+      visibility: visible;
+    }
+  }
+
+
+  .review {
+    .review-meta {
+      align-items: center;
+      display: flex;
+      //justify-content: space-between;
+      flex-wrap: wrap;
+
+    }
+
+    .user-info {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+
+    .user-comment {
+      width: 100%;
+    }
+
+
+    .review-meta .user-avatar {
+      border-radius: 50%;
+      height: 50px;
+      margin-right: 10px;
+      max-width: 50px;
+      overflow: hidden;
+      width: 50px;
+    }
+
+    .date {
+      color: #999;
+      font-size: 0.8rem;
+      margin-left: auto;
+    }
+
+  }
+
+  .rating-wrap {
+
+
+    align-items: center;
+    display: flex;
+
+    .num-rating {
+      background: #333;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 0.75rem;
+      line-height: 0.8rem;
+      margin-left: 5px;
+      padding: 3px 5px;
     }
   }
 
@@ -38,81 +100,131 @@
 
     .lucide-star,
     .lucide-star-half {
-      color: gold;
+      color: #222;
     }
 
     .lucide-star.empty {
-      opacity: 0.6;
       color: #bbb;
+      opacity: 0.6;
 
     }
 
     .half-star {
-      position: relative;
       display: inline-block;
+      position: relative;
 
       .lucide-star.empty {
+        left: 0;
         position: absolute;
         top: 0;
-        left: 0;
         z-index: -1;
       }
     }
   }
 
+  .beer-specs {
+
+    border-top: 1px solid #eaeaea;
+    margin-top: 20px;
+
+
+    .beer-spec {
+      font-size: 19px;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+
+    .beer-spec > p {
+      color: #999;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+
+    }
+
+  }
 
   .beer-info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 
+    &:first-child {
+      border-bottom: 1px solid #eaeaea;
+      margin-bottom: 15px;
+    }
+
     .subheading {
-      margin-bottom: 0;
-      text-transform: uppercase;
       font-size: 0.8rem;
       letter-spacing: 2px;
+      margin-bottom: 0;
+      text-transform: uppercase;
     }
 
     .beer-label {
-      width: 25%;
       max-width: 100px;
       min-width: 100px;
+      width: 25%;
+
+      .logo-wrap__sm {
+        max-width: 60px;
+      }
     }
 
     .beer-info-content {
       align-self: center;
-      width: 75%;
       min-width: 75%;
+      width: 75%;
     }
   }
 
   .card {
-    border: 1px solid $color-secondary;
+    border: 1px solid #eaeaea;
     border-radius: 25px;
+    margin-bottom: 1rem;
+    overflow: hidden;
   }
 
-  .padding-1-5 {
-    padding: 1.5rem;
+  .py-1 {
+    padding: 1rem 0 !important;
   }
 
-  .padding-1 {
-    padding: 1rem;
+  .px-1 {
+    padding: 0 1rem !important;
+  }
+
+  .p-1 {
+    padding: 1rem !important;
+  }
+
+
+  .padding-05 {
+    padding: 0.5rem;
   }
 
   h1 {
     &.display-sm {
       font-size: 2.5rem;
+      font-weight: 800;
     }
   }
 
   h3 {
     &.display-sm {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
+      font-weight: 400;
     }
   }
 
-  .margin-0 {
+  .m-0 {
     margin: 0 !important;
+  }
+
+  .mb-1 {
+    margin-bottom: 1rem !important;
+  }
+
+  .pb-0 {
+    padding-bottom: 0 !important;
   }
 
 }

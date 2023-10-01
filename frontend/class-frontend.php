@@ -63,9 +63,18 @@ class Frontend {
 
 	public function beer_reviews_handler( $atts ) {
 		$atts = shortcode_atts( array(
-			'id' => '1',
+			'id' => '',
 		), $atts, 'beer-reviews' );
+
 		$id   = $atts['id']; //NOSONAR
+		// if id exists and is not empty, use it for the beer id
+		if ( ! empty( $id ) ) {
+			$this->settings['beer_id'] = $id;
+		}
+
+
+		$show_reviews = $this->settings['show_reviews'] ?? ''; //NOSONAR
+		$show_avatar  = $this->settings['show_avatar'] ?? ''; //NOSONAR
 
 		$data = BeerReviewsUtility::fetch_beer_reviews_data( $this->settings ); //NOSONAR
 

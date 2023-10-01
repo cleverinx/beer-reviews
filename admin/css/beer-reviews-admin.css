@@ -8,12 +8,22 @@
   display: block;
 }
 
+.beer-reviews-admin .container{
+  max-width: 800px;
+  padding-top: 50px;
+}
+
 .metabox-holder input {
   max-width: 250px;
 }
 
 .metabox-holder textarea {
   max-width: 500px;
+}
+
+.metabox-holder input[type="checkbox"]{
+  display:inline-block;
+  width:auto;
 }
 
 .spinner {
