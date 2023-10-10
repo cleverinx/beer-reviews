@@ -43,6 +43,7 @@ class Admin {
 			$input_common = '<p><input type="%s" id="%s" name="%s" value="%s"%s></p>';
 
 			if ( $field['type'] === 'text' || $field['type'] === 'password' ) {
+				$value = $this->sanitizer($value); // Sanitize the input
 				$output .= sprintf( $input_common, $field['type'], $setting, $setting, $value, '' );
 			} elseif ( $field['type'] === 'checkbox' ) {
 				$checked = $value ? ' checked' : ''; // Add 'checked' attribute conditionally
@@ -60,7 +61,13 @@ class Admin {
 		wp_enqueue_script( $this->plugin_slug, plugin_dir_url( __FILE__ ) . 'js/beer-reviews-admin.js', [ 'jquery' ], $this->version, true );
 	}
 
+	public function sanitizer($input) {
+		$sanitized_input = sanitize_text_field($input);
+		
+		return $sanitized_input;
+	}
 	public function register_settings() {
+
 		register_setting( $this->settings_group, $this->option_name );
 	}
 
@@ -88,7 +95,6 @@ class Admin {
 	/**
 	 * Render the view using MVC pattern.
 	 */
-
 
 	public function render_dashboard() {
 		//generate the dashboard
